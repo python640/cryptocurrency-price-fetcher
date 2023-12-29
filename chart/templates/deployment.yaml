@@ -1,0 +1,26 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "cryptocurrency-price-fetcher.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "cryptocurrency-price-fetcher.name" . }}
+    helm.sh/chart: {{ include "cryptocurrency-price-fetcher.chart" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "cryptocurrency-price-fetcher.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "cryptocurrency-price-fetcher.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: cryptocurrency-price-fetcher
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: {{ .Values.service.targetPort }}

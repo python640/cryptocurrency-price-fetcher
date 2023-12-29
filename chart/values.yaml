@@ -1,0 +1,10 @@
+
+replicaCount: 1
+image:
+  repository: docker.io/python640/cryptocurrency-price-fetcher
+  tag: 0.0.2
+service:
+  name: cryptocurrency-price-fetcher
+  type: LoadBalancer
+  port: 80
+  targetPort: 8080

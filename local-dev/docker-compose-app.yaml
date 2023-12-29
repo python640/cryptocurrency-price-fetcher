@@ -1,0 +1,10 @@
+
+version: '3'
+services:
+  cryptocurrency-price-fetcher:
+    container_name: cryptocurrency-price-fetcher
+    build:
+      context: ..
+      dockerfile: docker/app.Dockerfile
+    ports:
+      - "8080:8080"
