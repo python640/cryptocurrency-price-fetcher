@@ -1,0 +1,5 @@
+
+apiVersion: v2
+name: cryptocurrency-price-fetcher
+description: A Helm chart for deploying cryptocurrency-price-fetcher application
+version: 0.0.1
